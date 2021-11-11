@@ -32,6 +32,7 @@ class ProdutoController extends Controller
 
         $data['listas'] = $queryProdutos->get();
         $data['listaCategorias'] = $listaCategorias;
+        $data['idCategoria'] = $idCategoria;
 
 
         return view('categoria',$data);
