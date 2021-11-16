@@ -1,12 +1,10 @@
 <?php
 
-use App\Categoria;
-use App\Produto;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInsertProductsTable extends Migration
+class AlterTableUsuariosAddColumnEmail extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +13,11 @@ class CreateInsertProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('insert_products', function (Blueprint $table) {
+        Schema::table('usuarios', function (Blueprint $table) {
             
-            $cat = new Categoria(['categoria' => 'Geral']);
-            $cat->save();
-            $table->id();
-            $table->timestamps();
-
+            $table->string('email',150);
             
-
+            
         });
     }
 
@@ -34,6 +28,6 @@ class CreateInsertProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('insert_products');
+        //
     }
 }

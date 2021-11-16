@@ -4,8 +4,7 @@ namespace App;
 
 
 
-class Usuario extends RModel
-{
+class Usuario extends RModel{
     protected $table = 'usuarios';
-    protected $fillable = ['login','password','nome', 'cpf'];
+    protected $fillable = ['login','password','nome', 'email'];
 }
