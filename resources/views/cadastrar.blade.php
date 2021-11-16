@@ -1,22 +1,65 @@
 @extends("layout")
     @section("conteudo")
+        <div class="col-12">
+            <div class="col-12">
+                <h2 class="mb-3">Cadastrar Cliente</h2>
+            </div>
     
+            <form action="" method="post"> 
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            Nome: <input type="text" name="nome" class="form-control" />
+                        </div>
+                    </div>
         
-        <h1>Cadastrar</h1>
-        @if(isset($listaCategorias) && count($listaCategorias)>0)
-            <ul>
-                @foreach($listaCategorias as $listaCategoria)
-                    <li>{{$listaCategoria->categoria}}</li>
-                @endforeach
-            </ul>
-        @endif
-        @if(isset($listaProdutos) && count($listaProdutos)>0)
-            <ul>
-                @foreach($listaProdutos as $listaProduto)
-                    <li>{{$listaProduto->nome}}</li>
-                @endforeach
-            </ul>
-        @endif
+                    <div class="col-6">
+                        <div class="form-group">
+                            E-mail: <input type="email" name="email" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="form-group">
+                            CPF: <input type="text" name="cpf" class="form-control" />
+                        </div>
+                    </div>
+        
+                    <div class="col-6">
+                        <div class="form-group">
+                            Senha: <input type="password" name="password" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="form-group">
+                            Endereço: <input type="text" name="endereco" class="form-control" />
+                        </div>
+                    </div>
+        
+                    <div class="col-4">
+                        <div class="form-group">
+                            Cidade: <input type="text" name="cidade" class="form-control" />
+                        </div>
+                     </div>
+        
+                    <div class="col-4">
+                        <div class="form-group">
+                            CEP: <input type="text" name="cep" class="form-control" />
+                        </div>
+                    </div>
+        
+                    <div class="col-4">
+                        <div class="form-group">
+                            Estado: <input type="text" name="estado" class="form-control" />
+                        </div>
+                    </div>
+                    <input type="submit" value="Cadastrar" class="btn btn-success btn-sm" />
+                </div>
+            </form>
+        </div>
+        
+        
 
     @endsection
     
