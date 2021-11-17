@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Endereco;
 use App\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
@@ -25,6 +27,9 @@ class ClienteController extends Controller
         $usuario->fill($values);//seta o que estiver no fillable, evitando fazer $request->nome, etc //dd($values);
         $usuario->login = $request->input('cpf','');
 
+        $senha = $request->input('password','');
+        $usuario->password = Hash::make($senha);//criptografando
+
         
         $enderecos = new Endereco();
         $enderecos->fill($values);
@@ -32,11 +37,13 @@ class ClienteController extends Controller
         //dd($enderecos);
 
         try{
+            DB::beginTransaction();//Iniciar uma transação
             $usuario->save();
             $enderecos->id_usuarios = $usuario->id;
             $enderecos->save();
+            DB::commit();//Confirmando a transação
         }catch(\Exception $e){
-
+            DB::rollBack();//Cancelar a transação
         }
         return redirect()->route('cadastrar');
     }
