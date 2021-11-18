@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Endereco;
+use App\Services\ClienteService;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,15 +37,22 @@ class ClienteController extends Controller
         $enderecos->logradouro = $request->input('endereco','');
         //dd($enderecos);
 
-        try{
-            DB::beginTransaction();//Iniciar uma transação
-            $usuario->save();
-            $enderecos->id_usuarios = $usuario->id;
-            $enderecos->save();
-            DB::commit();//Confirmando a transação
-        }catch(\Exception $e){
-            DB::rollBack();//Cancelar a transação
-        }
+        // try{
+        //     DB::beginTransaction();//Iniciar uma transação
+        //     $usuario->save();
+        //     $enderecos->id_usuarios = $usuario->id;
+        //     $enderecos->save();
+        //     DB::commit();//Confirmando a transação
+        // }catch(\Exception $e){
+        //     DB::rollBack();//Cancelar a transação
+        // }
+        $clienteService = new ClienteService();
+        $resultado = $clienteService->salvarUsuario($usuario,$enderecos);
+        //dd($resultado);
+        $message = $resultado['message'];
+        $status = $resultado['status'];
+        $request->session()->flash($status,$message); //Gravar os valores em uma requisição, se ok=Cadastrado com..., se err=Erro no cadas...
+        
         return redirect()->route('cadastrar');
     }
 }

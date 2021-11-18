@@ -26,8 +26,19 @@
 
    <div class="container">
        <div class="row">
-           <!-- Nesta DIV teremos uma área que os outros arquivos irão add conteudo -->
+            @if($message = Session::get("err"))
+                <div class="col-12">
+                    <div class="alert alert-danger">{{$message}}</div>
+                </div>
+            @endif
 
+            @if($message = Session::get("ok"))
+                <div class="col-12">
+                    <div class="alert alert-success">{{$message}}</div>
+                </div>
+            @endif
+
+           <!-- Nesta DIV teremos uma área que os outros arquivos irão add conteudo -->
            @yield("conteudo")
         </div>
     
