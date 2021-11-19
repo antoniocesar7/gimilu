@@ -3,7 +3,7 @@
     <div class="col-12">
         <h2 class="mb-3">Logar no sistema</h2>
 
-        <form action="">
+        <form action="{{route('logar')}}" method="POST">
             @csrf 
             <div class="form-group">
                 Login:
